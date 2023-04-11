@@ -75,6 +75,25 @@ void eliminarTableroJuego(char*** tablero, int tamTablero){
     delete[] tablero;
 }
 
+/**
+ * @brief Flujo principal del juego, en el cual el jugador elige la posicion que desea en el tablero
+ * donde se verifica si esta es correcta y se procede a su asignación.
+ * 
+ * @see comprobarTurnoJugador comprueba que la posicion ingresada por el jugador para el turno actual
+ * se encuentra en el formato correcto.
+ * 
+ * @see verificarTablero verifica si el jugador ha completado la cantidad necesaria de casillas para 
+ * darse por terminado el juego.
+ * 
+ * @param simboloJugador caracter que pertenece al jugador del turno utilizado para marcar las posiciones
+ * que este elige en el tablero.
+ * 
+ * @param tablero Tablero de juego.
+ * 
+ * @param tamTablero Tamaño del tablero de juego.
+ * 
+ * @return verificarTablero bandera que indica si el jugador se ha convertido en ganador del juego.
+*/
 bool turnoJugador(char simboloJugador, char*** tablero, int tamTablero){
     char* posicion = new char[4];
     char letras[] = {'A', 'B', 'C', 'D', 'E', 'F'};
@@ -106,10 +125,22 @@ bool turnoJugador(char simboloJugador, char*** tablero, int tamTablero){
     " ALTO, " << posicionZ << " PROFUNDO." << endl;
     imprimirTableroJuego(tablero, tamTablero);
     system("pause");
+    return verificarTablero(simboloJugador, tablero, tamTablero);
     delete[] anchoTemporal;
     delete[] posicion;
 }
 
+/**
+ * @brief Comprueba que la posicion ingresada por el jugador en el turno se encuentra en el formato correcto.
+ * 
+ * @param turnoJugador Posicion ingresada por el jugador en el turno dispuesta para ser verificada.
+ * 
+ * @param letras Arreglo de caracteres utilizados en la verificación de la posicoón ingresada.
+ * 
+ * @param tamTablero Tamaño del tablero de juego.
+ * 
+ * @return Bandera que indica si fue exitosa la comprobación de los caracteres ingresados por el jugador en el turno.
+*/
 bool comprobarTurnoJugador(char* turnoJugador, char* letras, int tamTablero){
     bool x = false, y = false, z = false;
     for(int iterador = 0; iterador < tamTablero; iterador++){
@@ -130,6 +161,21 @@ bool comprobarTurnoJugador(char* turnoJugador, char* letras, int tamTablero){
     return x && y && z;
 }
 
+/**
+ * @brief Modifica el tablero de juego teniendo en cuenta la posición elegida por el jugador en el turno actual.
+ * 
+ * @param posicionX Caracter que indica la posición en el eje X ingresada por el jugador.
+ * 
+ * @param posicionY Numero que indica la posición en el eje Y ingresada por el jugador.
+ * 
+ * @param posicionZ Numero que indica la posición en el eje Z ingresada por el jugador.
+ * 
+ * @param tablero Tablero de juego
+ * 
+ * @param tamTablero Tamaño del tablero de juego.
+ * 
+ * @param simbolo Simbolo del jugador en el turno actual utilizado para modificar el tablero.
+*/
 bool modificarTableroJuego(char posicionX, int posicionY, int posicionZ, char*** tablero, int tamTablero, char simbolo){
     bool comprobante = false;
     char letras[] = {'A', 'B', 'C', 'D', 'E', 'F'};
@@ -147,3 +193,26 @@ bool modificarTableroJuego(char posicionX, int posicionY, int posicionZ, char***
     }
     return comprobante;
 }
+
+bool verificarTablero(char simbolo, char*** tablero, int tamTablero){
+    bool comprobante = false;
+    for(int iteradorX = 0; iteradorX < tamTablero; iteradorX++){
+        for(int iteradorY = 0; iteradorY < tamTablero; iteradorY++){
+            for(int iteradorZ = 0; iteradorZ < tamTablero; iteradorZ++){
+                if((iteradorX == 0 || iteradorY == 0 || iteradorZ == 0)){
+
+                }
+            }
+        }
+    }
+    return comprobante;
+}
+
+bool verificarFilas(char*** tablero, int tamTablero, char simbolo, int x, int y, int z){
+
+}
+
+bool verificarColumnas(char*** tablero, int tamTablero, char simbolo, int x, int y, int z){
+
+}
+
