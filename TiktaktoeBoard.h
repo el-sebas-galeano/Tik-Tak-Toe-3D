@@ -3,7 +3,8 @@
 
 #include <ostream>
 #include <vector>
-#include "TiktaktoePlayerBase.h"
+
+class TiktaktoePlayerBase;
 
 class TiktaktoeBoard{
     public:

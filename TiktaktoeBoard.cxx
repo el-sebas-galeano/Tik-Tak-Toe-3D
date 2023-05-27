@@ -56,7 +56,7 @@ unsigned char TiktaktoeBoard::click(unsigned int x, unsigned int y, unsigned int
 }
 
 void TiktaktoeBoard::step(TiktaktoePlayerBase *player){
-    unsigned int x, y, x;
+    unsigned int x, y, z;
     this->playerX->play(x,y,z);
     this->playerX->report(this->click(x, y, z));
 
@@ -66,4 +66,10 @@ void TiktaktoeBoard::step(TiktaktoePlayerBase *player){
 
 void TiktaktoeBoard::toStream(std::ostream &out) const{
     //Como deberia estarse imprimiendo el tablero
+    for(unsigned int i = 0; i < this->size; ++i){
+        out << "*";
+        for(unsigned int i = 0; i < this->size; ++i)
+            out << "===*";
+        out << std::endl;
+    }
 }
