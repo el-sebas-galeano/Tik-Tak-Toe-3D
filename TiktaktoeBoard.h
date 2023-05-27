@@ -3,8 +3,7 @@
 
 #include <ostream>
 #include <vector>
-
-class TiktaktoePlayerBase;
+#include "TiktaktoePlayerBase.h"
 
 class TiktaktoeBoard{
     public:
@@ -14,7 +13,7 @@ class TiktaktoeBoard{
         void setPlayers(TiktaktoePlayerBase* playerX, TiktaktoePlayerBase* playerO);
 
         bool have_won() const;
-        bool have_lose() const;
+        bool have_tie() const;
 
         unsigned char click();
         void step(TiktaktoePlayerBase* player);

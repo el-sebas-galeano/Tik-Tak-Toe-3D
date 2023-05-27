@@ -13,6 +13,7 @@ class TikTakToePlayerBase{
     protected:
         unsigned int size;
         unsigned char symbol;
+        bool won;
 }; 
 
 #endif //  __TiktaktoePlayerBase__h__
