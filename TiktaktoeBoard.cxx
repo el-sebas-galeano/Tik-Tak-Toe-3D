@@ -51,15 +51,19 @@ bool TiktaktoeBoard::have_tie() const{
     return this->tie;
 }
 
-
-unsigned char TiktaktoeBoard::click(){
-
+unsigned char TiktaktoeBoard::click(unsigned int x, unsigned int y, unsigned int z){
+    // Que es lo que hace un click de un jugador en el tablero
 }
 
 void TiktaktoeBoard::step(TiktaktoePlayerBase *player){
+    unsigned int x, y, x;
+    this->playerX->play(x,y,z);
+    this->playerX->report(this->click(x, y, z));
 
+    this->playerO->play(x,y,z);
+    this->playerO->report((this->click(x, y, z)));
 }
 
 void TiktaktoeBoard::toStream(std::ostream &out) const{
-
+    //Como deberia estarse imprimiendo el tablero
 }
