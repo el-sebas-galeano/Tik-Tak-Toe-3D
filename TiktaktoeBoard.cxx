@@ -33,14 +33,13 @@ const unsigned int& TiktaktoeBoard::getSize(){
     return this->size;
 };
 
-
 /**
  * @brief Reporta si alguno de los 2 jugadores ha ganado el juego
  *
  * @return Estado de los dos jugadores. Retorna si uno u otro ha ganado
 **/
 bool TiktaktoeBoard::have_won() const{
-    return this->playerX->won || this->playerO->won;
+    return this->playerX->getWon() || this->playerO->getWon();
 }
 
 /**

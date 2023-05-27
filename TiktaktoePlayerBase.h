@@ -5,7 +5,8 @@ class TikTakToePlayerBase{
     public:
         TikTakToePlayerBase( );
         virtual ~TikTakToePlayerBase( ) = default;
-        
+        virtual bool getWon();
+
         virtual void configure(unsigned int size, unsigned char symbol);
         virtual void play(unsigned int& x, unsigned int& y, unsigned int& z);
         virtual void report( const unsigned char& c );
