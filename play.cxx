@@ -55,11 +55,13 @@ int main(int argc, char** argv){
     }
 
     tiktaktoeBoard->setPlayers(playerX, playerO);
-    while((!tiktaktoeBoard->have_tie()) || !(tiktaktoeBoard->getPlayerX()->getWon() || tiktaktoeBoard->getPlayerO()->getWon())){
+    while((!tiktaktoeBoard->have_tie()) && !tiktaktoeBoard->have_won()){
         std::cout << *tiktaktoeBoard << std::endl;
         tiktaktoeBoard->step(*playerX);
-        std::cout << *tiktaktoeBoard << std::endl;
-        tiktaktoeBoard->step(*playerO);
+        if(!tiktaktoeBoard->have_won()){
+            std::cout << *tiktaktoeBoard << std::endl;
+            tiktaktoeBoard->step(*playerO);
+        }
     }
 
     std::cout << *tiktaktoeBoard << std::endl;
@@ -69,5 +71,10 @@ int main(int argc, char** argv){
     }else if(tiktaktoeBoard->getPlayerO()->getWon()){
         std::cout << "Player O gana.";
         std::cout << std::endl;
+    } else{
+        std::cout << "Los jugadores han empatado.";
+        std::cout << std::endl;
     }
+    std::cout << std::endl;
+    std::cout << std::endl;
 }

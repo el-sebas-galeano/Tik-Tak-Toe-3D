@@ -45,6 +45,14 @@ TiktaktoePlayerBase* TiktaktoeBoard::getPlayerX() {
 TiktaktoePlayerBase* TiktaktoeBoard::getPlayerO() {
     return this->playerO;
 }
+
+unsigned long long TiktaktoeBoard::getCheck(){
+    return this->check;
+}
+
+void TiktaktoeBoard::setCheck(long long check) {
+    this->check = check;
+}
 /**
  * @brief Reporta si alguno de los 2 jugadores ha ganado el juego
  *
@@ -59,7 +67,10 @@ bool TiktaktoeBoard::have_won() const{
  *
  * @return Estado del tablero. Reporta si hay o no empate
 **/
-bool TiktaktoeBoard::have_tie() const{
+bool TiktaktoeBoard::have_tie(){
+    if(this->check == (this->size * this->size * this->size)){
+        this->tie = true;
+    }
     return this->tie;
 }
 
@@ -69,13 +80,101 @@ unsigned char TiktaktoeBoard::click(
         unsigned int z,
         char symbol
         ){
-    this->boxes[this->_idx(x, y, z)] = symbol;
+    if(this->boxes[this->_idx(x, y, z)] == ' '){
+        this->boxes[this->_idx(x, y, z)] = symbol;
+        this->setCheck(this->getCheck() + 1);
+    }else{
+        std::cout << "Casilla ocupada. Jugador " << symbol << " pierde el turno." << std::endl;
+    }
+}
+
+bool TiktaktoeBoard::verify(
+        unsigned int x,
+        unsigned int y,
+        unsigned int z,
+        char symbol
+        ){
+
+    bool winner = true;
+
+    // Comprobar X
+    unsigned int i = 0;
+    while(i < this->size){
+        if (this->boxes[this->_idx(i,y,z)] != symbol) {
+            winner = false;
+        }
+        ++i;
+    }
+    if(winner) return true;
+    // Comprobar Y
+    i = 0;
+    winner = true;
+    while(i < this->size){
+        if (this->boxes[this->_idx(x,i,z)] != symbol) {
+            winner = false;
+        }
+        ++i;
+    }
+    if(winner) return true;
+    // Comprobar Z
+    i = 0;
+    winner = true;
+    while(i < this->size){
+        if (this->boxes[this->_idx(x, y, i)] != symbol) {
+            winner = false;
+        }
+        ++i;
+    }
+    if(winner) return true;
+    //Comprobar diagonal X = Y
+    i = 0;
+    winner = true;
+    while(i < this->size){
+        if (this->boxes[this->_idx(i,i,z)] != symbol) {
+            winner = false;
+        }
+        ++i;
+    }
+    if(winner) return true;
+    //Comprobar diagonal Y = Z
+    i = 0;
+    winner = true;
+    while(i < this->size){
+        if (this->boxes[this->_idx(x,i,i)] != symbol) {
+            winner = false;
+        }
+        ++i;
+    }
+    if(winner) return true;
+    //Comprobar diagonal X = Z
+    i = 0;
+    winner = true;
+    while(i < this->size){
+        if (this->boxes[this->_idx(i,y,i)] != symbol) {
+            winner = false;
+        }
+        ++i;
+    }
+    if(winner) return true;
+    //Comprobar diagonal X = Y = Z
+    i = 0;
+    winner = true;
+    while(i < this->size){
+        if (this->boxes[this->_idx(i,i,i)] != symbol) {
+            winner = false;
+        }
+        ++i;
+    }
+    return winner;
 }
 
 void TiktaktoeBoard::step(TiktaktoePlayerBase& player){
     unsigned int x, y, z;
     player.play(x,y,z);
     player.report(this->click(x, y, z, player.getSymbol()));
+    if(this->verify(x, y, z, player.getSymbol())){
+        player.setWon(true);
+    }
 }
 
 void TiktaktoeBoard::toStream(
@@ -115,7 +214,6 @@ void TiktaktoeBoard::toStream(
         out << std::endl;
         out << std::endl;
     }
-    out << std::endl;
 }
 
 unsigned long long TiktaktoeBoard::_idx(

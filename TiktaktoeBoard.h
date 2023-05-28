@@ -20,10 +20,12 @@ class TiktaktoeBoard{
 
         TiktaktoePlayerBase* getPlayerX();
         TiktaktoePlayerBase* getPlayerO();
+        unsigned long long getCheck();
+        void setCheck(long long check);
 
         bool have_won() const;
 
-        bool have_tie() const;
+        bool have_tie();
 
         unsigned char click(
                 unsigned int x,
@@ -37,8 +39,13 @@ class TiktaktoeBoard{
                 );
 
         const unsigned int& getSize();
-
     private:
+        bool verify(
+                unsigned int x,
+                unsigned int y,
+                unsigned int z,
+                char symbol
+        );
         void toStream(
                 std::ostream& out
                 ) const;
@@ -55,6 +62,8 @@ class TiktaktoeBoard{
         bool tie {false};
 
         unsigned int size;
+
+        unsigned long long check = 0;
 
         TiktaktoePlayerBase* playerX;
 
