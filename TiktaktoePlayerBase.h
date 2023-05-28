@@ -1,13 +1,14 @@
 #ifndef __TiktaktoePlayerBase__h__
 #define __TiktaktoePlayerBase__h__
 
-class TikTakToePlayerBase{
+class TiktaktoePlayerBase{
     public:
-        TikTakToePlayerBase( );
+        TiktaktoePlayerBase( );
 
-        virtual ~TikTakToePlayerBase( ) = default;
+        virtual ~TiktaktoePlayerBase( ) = default;
 
         virtual bool getWon();
+        virtual char getSymbol();
 
         virtual void configure(
                 unsigned int size,

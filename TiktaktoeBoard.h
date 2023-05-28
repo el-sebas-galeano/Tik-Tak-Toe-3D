@@ -3,8 +3,7 @@
 
 #include <ostream>
 #include <vector>
-
-class TiktaktoePlayerBase;
+#include "TiktaktoePlayerBase.h"
 
 class TiktaktoeBoard{
     public:
@@ -19,6 +18,9 @@ class TiktaktoeBoard{
                 TiktaktoePlayerBase* playerO
                 );
 
+        TiktaktoePlayerBase* getPlayerX();
+        TiktaktoePlayerBase* getPlayerO();
+
         bool have_won() const;
 
         bool have_tie() const;
@@ -26,11 +28,12 @@ class TiktaktoeBoard{
         unsigned char click(
                 unsigned int x,
                 unsigned int y,
-                unsigned int z
+                unsigned int z,
+                char symbol
                 );
 
         void step(
-                TiktaktoePlayerBase* player
+                TiktaktoePlayerBase& tiktaktoePlayerBase
                 );
 
         const unsigned int& getSize();
@@ -41,7 +44,9 @@ class TiktaktoeBoard{
                 ) const;
 
         unsigned long long _idx(
-            unsigned int& x, unsigned int& y, unsigned int& z 
+            unsigned int& x,
+            unsigned int& y,
+            unsigned int& z
         ) const;
 
     protected:

@@ -3,7 +3,7 @@
 /**
  * @brief Constructor del jugador base.
 **/
-TikTakToePlayerBase::TikTakToePlayerBase(){
+TiktaktoePlayerBase::TiktaktoePlayerBase(){
 }
 
 /**
@@ -11,17 +11,21 @@ TikTakToePlayerBase::TikTakToePlayerBase(){
  *
  * @return Estado del jugador. Retorna si este ha ganado.
 **/
-bool TikTakToePlayerBase::getWon(){
+bool TiktaktoePlayerBase::getWon(){
     return this->won;
 }
 
+char TiktaktoePlayerBase::getSymbol(){
+    return this->symbol;
+}
 /**
  * @brief Configuracion inicial del jugador base.
  *
  * @param size Tamaño del tablero de Tiktaktoe3D.
  * @param symbol Símbolo asignado al jugador.
- * **/
-void TikTakToePlayerBase::configure(unsigned int size, unsigned char symbol){
+ *
+ **/
+void TiktaktoePlayerBase::configure(unsigned int size, unsigned char symbol){
     this->size = size;
     this->symbol = symbol;
     this->won = false;
@@ -34,7 +38,7 @@ void TikTakToePlayerBase::configure(unsigned int size, unsigned char symbol){
  * @param y Coordenada de la casilla elegida en el eje y.
  * @param z Coordenada de la casilla elegida en el eje z.
 **/
-void TikTakToePlayerBase::play(unsigned int &x, unsigned int &y, unsigned int &z){
+void TiktaktoePlayerBase::play(unsigned int &x, unsigned int &y, unsigned int &z){
 
 }
 
@@ -44,6 +48,6 @@ void TikTakToePlayerBase::play(unsigned int &x, unsigned int &y, unsigned int &z
  *
  * @param c Reporte.
 **/
-void TikTakToePlayerBase::report(const unsigned char &c){
+void TiktaktoePlayerBase::report(const unsigned char &c){
     //  Actualiza las probabilidades de las opciones cuando un jugador realiza un movimiento
 }
