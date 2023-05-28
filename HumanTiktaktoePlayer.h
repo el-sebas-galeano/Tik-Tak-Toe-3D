@@ -3,11 +3,19 @@
 
 #include "TiktaktoePlayerBase.h"
 
-class HumanTiktaktoePlayer : public TikTakToePlayerBase{
+class HumanTiktaktoePlayer
+        : public TiktaktoePlayerBase
+        {
     public:
     HumanTiktaktoePlayer();
     virtual ~HumanTiktaktoePlayer() = default;
-    virtual void play(unsigned int& x, unsigned int& y, unsigned int& z) override;
+    virtual void play(unsigned int& x,
+                      unsigned int& y,
+                      unsigned int& z)
+                      override;
+
+    private:
+        bool verify(char* entry);
 };
 
 #endif

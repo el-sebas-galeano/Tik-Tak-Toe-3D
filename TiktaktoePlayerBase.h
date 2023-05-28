@@ -8,6 +8,7 @@ class TiktaktoePlayerBase{
         virtual ~TiktaktoePlayerBase( ) = default;
 
         virtual bool getWon();
+        virtual char getSymbol();
 
         virtual void configure(
                 unsigned int size,

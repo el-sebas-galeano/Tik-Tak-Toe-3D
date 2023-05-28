@@ -1,11 +1,13 @@
 #include "TiktaktoeBoard.h"
-
+#include <iostream>
 /**
  * @brief Constructor del tablero de juego
  * 
  * @param size Tamaño del tablero de juego
 **/
-TiktaktoeBoard::TiktaktoeBoard(unsigned int size){
+TiktaktoeBoard::TiktaktoeBoard(
+        unsigned int size
+        ){
     this->size = size;
     this->boxes.resize(size * size * size, ' ');
     this->tie = false;
@@ -17,7 +19,10 @@ TiktaktoeBoard::TiktaktoeBoard(unsigned int size){
  * @param playerX Jugador con el caracter X
  * @param playerO Jugador con el caracter Y
 **/
-void TiktaktoeBoard::setPlayers(TiktaktoePlayerBase *playerX, TiktaktoePlayerBase *playerO){
+void TiktaktoeBoard::setPlayers(
+        TiktaktoePlayerBase *playerX,
+        TiktaktoePlayerBase *playerO
+        ){
     this->playerX = playerX;
     this->playerX->configure(this->size, 'X');
     this->playerO = playerO;
@@ -33,6 +38,13 @@ const unsigned int& TiktaktoeBoard::getSize(){
     return this->size;
 };
 
+TiktaktoePlayerBase* TiktaktoeBoard::getPlayerX() {
+    return this->playerX;
+}
+
+TiktaktoePlayerBase* TiktaktoeBoard::getPlayerO() {
+    return this->playerO;
+}
 /**
  * @brief Reporta si alguno de los 2 jugadores ha ganado el juego
  *
@@ -51,40 +63,66 @@ bool TiktaktoeBoard::have_tie() const{
     return this->tie;
 }
 
-unsigned char TiktaktoeBoard::click(unsigned int x, unsigned int y, unsigned int z){
-    // Que es lo que hace un click de un jugador en el tablero
+unsigned char TiktaktoeBoard::click(
+        unsigned int x,
+        unsigned int y,
+        unsigned int z,
+        char symbol
+        ){
+    this->boxes[this->_idx(x, y, z)] = symbol;
 }
 
-void TiktaktoeBoard::step(){
+void TiktaktoeBoard::step(TiktaktoePlayerBase& player){
     unsigned int x, y, z;
-    this->playerX->play(x,y,z);
-    this->playerX->report(this->click(x, y, z));
-
-    this->playerO->play(x,y,z);
-    this->playerO->report((this->click(x, y, z)));
+    player.play(x,y,z);
+    player.report(this->click(x, y, z, player.getSymbol()));
 }
 
-void TiktaktoeBoard::toStream(std::ostream &out) const{
-    //Como deberia estarse imprimiendo el tablero
+void TiktaktoeBoard::toStream(
+        std::ostream &out
+        ) const{
+    char letras[] = {'A', 'B', 'C', 'D', 'E', 'F'};
     for(unsigned int i = 0; i < this->size; ++i){
         out << "Tablero # " << i + 1;
         out << std::endl;
+        out << std::endl;
+        out << "+===+";
+        for(unsigned int k = 0; k < this->size; ++k){
+            out << "===+";
+        }
+        out << std::endl;
+        out << "| / |";
         for(unsigned int j = 0; j < this->size; ++j){
-            out << "+";
+            out << " " << letras[j] << " |";
+        }
+        out << std::endl;
+        for(unsigned int j = 0; j < this->size; ++j){
+            out << "+===+";
             for(unsigned int k = 0; k < this->size; ++k){
                 out << "===+";
             }
             out << std::endl;
-            out << "|";
+            out << "| " << j + 1 << " |";
             for(unsigned int k = 0; k < this->size; ++k){
-                out << " " << " " << " |";
-            }
-            out << std::endl;
-            out << "+";
-            for(unsigned int k = 0; k < this->size; ++k){
-                out << "===+";
+                out << " " << this->boxes[this->_idx(i, j, k)] << " |";
             }
             out << std::endl;
         }
+        out << "+===+";
+        for(unsigned int k = 0; k < this->size; ++k){
+            out << "===+";
+        }
+        out << std::endl;
+        out << std::endl;
     }
+    out << std::endl;
 }
+
+unsigned long long TiktaktoeBoard::_idx(
+        unsigned int &x,
+        unsigned int &y,
+        unsigned int &z
+        ) const {
+    return x + this->size *( y + this->size * z);
+}
+

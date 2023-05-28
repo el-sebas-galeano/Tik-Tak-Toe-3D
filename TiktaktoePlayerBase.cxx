@@ -15,12 +15,16 @@ bool TiktaktoePlayerBase::getWon(){
     return this->won;
 }
 
+char TiktaktoePlayerBase::getSymbol(){
+    return this->symbol;
+}
 /**
  * @brief Configuracion inicial del jugador base.
  *
  * @param size Tamaño del tablero de Tiktaktoe3D.
  * @param symbol Símbolo asignado al jugador.
- * **/
+ *
+ **/
 void TiktaktoePlayerBase::configure(unsigned int size, unsigned char symbol){
     this->size = size;
     this->symbol = symbol;
