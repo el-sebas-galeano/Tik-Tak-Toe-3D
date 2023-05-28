@@ -3,8 +3,7 @@
 
 #include <ostream>
 #include <vector>
-
-class TiktaktoePlayerBase;
+#include "TiktaktoePlayerBase.h"
 
 class TiktaktoeBoard{
     public:
@@ -29,9 +28,7 @@ class TiktaktoeBoard{
                 unsigned int z
                 );
 
-        void step(
-                TiktaktoePlayerBase* player
-                );
+        void step();
 
         const unsigned int& getSize();
 

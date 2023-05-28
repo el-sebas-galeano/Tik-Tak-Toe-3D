@@ -5,26 +5,26 @@
  *  + Daniel Florido Saez
  *
  **/
-
+#include "TiktaktoeBoard.h"
 #include <iostream>
 #include <string>
-#include "TiktaktoeBoard.h"
-#include "TiktaktoePlayerBase.h"
+
 
 int main(int argc, char** argv){
     unsigned int size = 3;
-    std::string pType = "HUMAN";
+    std::string pType1 = "HUMAN";
+    std::string pType2 = "HUMAN";
 
-    if(argc < 2)
-        exit(1);
     if(argc >= 2)
-        pType = argv[1];
+        pType1 = argv[1];
     if(argc >= 3)
-        size = std::atoi( argv[2] );
+        pType2 = argv[2];
+    if(argc >= 4)
+        size = std::atoi( argv[3] );
+
 
     TiktaktoeBoard* tiktaktoeBoard = new TiktaktoeBoard(size);
     std::cout << *tiktaktoeBoard << std::endl;
 
-    TikTakToePlayerBase* playerX = nullptr;
-    TikTakToePlayerBase* playerO = nullptr;
+
 }

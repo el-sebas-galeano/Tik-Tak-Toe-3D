@@ -55,7 +55,7 @@ unsigned char TiktaktoeBoard::click(unsigned int x, unsigned int y, unsigned int
     // Que es lo que hace un click de un jugador en el tablero
 }
 
-void TiktaktoeBoard::step(TiktaktoePlayerBase *player){
+void TiktaktoeBoard::step(){
     unsigned int x, y, z;
     this->playerX->play(x,y,z);
     this->playerX->report(this->click(x, y, z));
@@ -67,9 +67,24 @@ void TiktaktoeBoard::step(TiktaktoePlayerBase *player){
 void TiktaktoeBoard::toStream(std::ostream &out) const{
     //Como deberia estarse imprimiendo el tablero
     for(unsigned int i = 0; i < this->size; ++i){
-        out << "*";
-        for(unsigned int i = 0; i < this->size; ++i)
-            out << "===*";
+        out << "Tablero # " << i + 1;
         out << std::endl;
+        for(unsigned int j = 0; j < this->size; ++j){
+            out << "+";
+            for(unsigned int k = 0; k < this->size; ++k){
+                out << "===+";
+            }
+            out << std::endl;
+            out << "|";
+            for(unsigned int k = 0; k < this->size; ++k){
+                out << " " << " " << " |";
+            }
+            out << std::endl;
+            out << "+";
+            for(unsigned int k = 0; k < this->size; ++k){
+                out << "===+";
+            }
+            out << std::endl;
+        }
     }
 }
