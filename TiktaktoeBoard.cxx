@@ -80,12 +80,17 @@ unsigned char TiktaktoeBoard::click(
         unsigned int z,
         char symbol
         ){
-    if(this->boxes[this->_idx(x, y, z)] == ' '){
-        this->boxes[this->_idx(x, y, z)] = symbol;
-        this->setCheck(this->getCheck() + 1);
-    }else{
-        std::cout << "Casilla ocupada. Jugador " << symbol << " pierde el turno." << std::endl;
+
+    while(this->boxes[this->_idx(x, y, z)] != ' '){
+        if(symbol == 'X'){
+            this->playerX->play(x, y, z);
+        }else{
+            this->playerO->play(x, y, z);
+        }
     }
+    std::cout << "Jugador " << symbol << " juega " << x << "'" << y << "'" << z << std::endl;
+    this->boxes[this->_idx(x, y, z)] = symbol;
+    this->setCheck(this->getCheck() + 1);
 }
 
 bool TiktaktoeBoard::verify(

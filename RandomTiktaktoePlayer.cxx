@@ -9,7 +9,8 @@ void RandomTiktaktoePlayer::configure(
         unsigned int size,
         unsigned char symbol
         ) {
-    TiktaktoePlayerBase::configure(size, symbol);
+    this->size = size;
+    this->symbol = symbol;
 }
 
 void RandomTiktaktoePlayer::play(unsigned int &x,
@@ -17,11 +18,11 @@ void RandomTiktaktoePlayer::play(unsigned int &x,
                                  unsigned int &z
                                  ){
     std::srand(std::time(0));
-    int randomNumber = std::rand() % this->size - 1;
+    int randomNumber = std::rand() % this->size;
     x = randomNumber;
-    randomNumber = std::rand() % this->size - 1;
+    randomNumber = std::rand() % this->size;
     y = randomNumber;
-    randomNumber = std::rand() % this->size - 1;
+    randomNumber = std::rand() % this->size;
     z = randomNumber;
 }
 

@@ -31,7 +31,7 @@ class TiktaktoePlayerBase{
 
         unsigned char symbol;
 
-        bool won;
+        bool won{false};
 }; 
 
 #endif //  __TiktaktoePlayerBase__h__
