@@ -7,7 +7,8 @@ class TiktaktoePlayerBase{
 
         virtual ~TiktaktoePlayerBase( ) = default;
 
-        virtual bool getWon();
+        bool getWon();
+        bool setWon(bool won);
         virtual char getSymbol();
 
         virtual void configure(
@@ -30,7 +31,7 @@ class TiktaktoePlayerBase{
 
         unsigned char symbol;
 
-        bool won;
+        bool won{false};
 }; 
 
 #endif //  __TiktaktoePlayerBase__h__

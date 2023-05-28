@@ -15,6 +15,10 @@ bool TiktaktoePlayerBase::getWon(){
     return this->won;
 }
 
+bool TiktaktoePlayerBase::setWon(bool won){
+    this->won = won;
+}
+
 char TiktaktoePlayerBase::getSymbol(){
     return this->symbol;
 }
