@@ -13,7 +13,8 @@ class RandomTiktaktoePlayer
         virtual ~RandomTiktaktoePlayer() = default;
         virtual void play(unsigned int& x,
                           unsigned int& y,
-                          unsigned int& z
+                          unsigned int& z,
+                          std::vector <unsigned char> boxes
                           )override;
 
         virtual void configure(
@@ -24,7 +25,8 @@ class RandomTiktaktoePlayer
         unsigned long long _idx(
                 unsigned int &x,
                 unsigned int &y,
-                unsigned int &z
+                unsigned int &z,
+                unsigned int number
         ) const;
     protected:
     std::vector<char> options;

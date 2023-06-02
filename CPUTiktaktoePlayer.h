@@ -2,6 +2,7 @@
 #define __CPUTiktaktoePlayer__h__
 
 #include "TiktaktoePlayerBase.h"
+#include <vector>
 
 class CPUTiktaktoePlayer
         : public TiktaktoePlayerBase

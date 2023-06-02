@@ -42,7 +42,7 @@ void TiktaktoePlayerBase::configure(unsigned int size, unsigned char symbol){
  * @param y Coordenada de la casilla elegida en el eje y.
  * @param z Coordenada de la casilla elegida en el eje z.
 **/
-void TiktaktoePlayerBase::play(unsigned int &x, unsigned int &y, unsigned int &z){
+void TiktaktoePlayerBase::play(unsigned int &x, unsigned int &y, unsigned int &z, std::vector <unsigned char> boxes){
 
 }
 

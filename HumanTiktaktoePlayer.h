@@ -2,6 +2,7 @@
 #define __HumanTiktaktoePlayer__h__
 
 #include "TiktaktoePlayerBase.h"
+#include <vector>
 
 class HumanTiktaktoePlayer
         : public TiktaktoePlayerBase
@@ -11,7 +12,9 @@ class HumanTiktaktoePlayer
     virtual ~HumanTiktaktoePlayer() = default;
     virtual void play(unsigned int& x,
                       unsigned int& y,
-                      unsigned int& z)
+                      unsigned int& z,
+                      std::vector <unsigned char> boxes
+                      )
                       override;
 
     private:

@@ -1,6 +1,8 @@
 #ifndef __TiktaktoePlayerBase__h__
 #define __TiktaktoePlayerBase__h__
 
+#include <vector>
+
 class TiktaktoePlayerBase{
     public:
         TiktaktoePlayerBase( );
@@ -19,7 +21,8 @@ class TiktaktoePlayerBase{
         virtual void play(
                 unsigned int& x,
                 unsigned int& y,
-                unsigned int& z
+                unsigned int& z,
+                std::vector <unsigned char> boxes
                 );
 
         virtual void report(
