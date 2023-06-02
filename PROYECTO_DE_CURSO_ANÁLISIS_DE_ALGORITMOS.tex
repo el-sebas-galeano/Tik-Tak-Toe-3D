@@ -1,0 +1,140 @@
+\documentclass[oneside,spanish]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage[latin9,utf8]{inputenc}
+\usepackage{float}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Some new commands
+\newcommand{\noun}[1]{\textsc{#1}}
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}
+\providecommand{\algorithmname}{Algoritmo}
+\floatname{algorithm}{\protect\algorithmname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\theoremstyle{definition}
+\newtheorem*{defn*}{\protect\definitionname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{xmpmulti}
+\usepackage{algorithm,algpseudocode}
+\usepackage{ifthen}
+\makeatother
+
+\usepackage{babel}
+\addto\shorthandsspanish{\spanishdeactivate{~<>}}
+
+\providecommand{\definitionname}{Definición}
+
+\begin{document}
+\title{TIK TAK TOE 3D}
+\author{Daniel Steven Florido Saez, Juan Sebastian Galeano Gonzalez}
+\date{\today}
+\begin{abstract}
+En este documento se desarrollan distintos algoritmos con el fin de reemplazar un jugador en el juego 3D Tic Tac Toe, una versión en tres dimensiones del Tic Tac Toe convencional. 
+\end{abstract}
+
+\maketitle
+
+\part{Análisis y Diseño del problema}
+
+\section{Análisis}
+
+\subsection{Tic Tac Toe}
+
+Tic-Tac-Toe, comúnmente conocido como Tres en Raya o Gato, es un juego de mesa tradicional diseñado para dos jugadores. El objetivo del juego es colocar estratégicamente sus respectivos símbolos en un tablero de 3x3, con el fin de crear una línea de tres símbolos en disposición horizontal, vertical o diagonal. El primer jugador generalmente adopta el símbolo "X", mientras que el segundo jugador utiliza el símbolo "O". Si todas las casillas del tablero están ocupadas y ninguno de los jugadores ha logrado formar una línea ganadora, el juego termina en empate.\\
+
+
+Debido a sus reglas sencillas y su baja complejidad, el Tic-Tac-Toe ha ganado popularidad como un juego casual o infantil, al tiempo que se utiliza como una herramienta educativa para enseñar conceptos fundamentales de estrategia y lógica. \\
+
+\subsection{Tic Tac Toe 3D}
+
+El Tic-Tac-Toe 3D es una variante tridimensional del juego clásico Tic-Tac-Toe, en la cual se juega en un tablero de 3x3x3 casillas. Al igual que en el juego convencional, el objetivo es que los jugadores coloquen sus símbolos (generalmente "X" y "O") en una línea de tres en cualquier dirección: horizontal, vertical, diagonal o incluso en las diagonales a través de las tres capas del tablero. Este desafío adicional de tener una dimensión extra agrega complejidad estratégica al juego y amplía las posibilidades de movimiento para los jugadores. \\
+
+
+El Tic-Tac-Toe 3D ofrece una experiencia de juego más profunda y requiere un análisis estratégico más cuidadoso para lograr la victoria. La interacción entre las diferentes capas del tablero y las múltiples direcciones en las que se pueden formar líneas ganadoras brinda un desafío adicional y estimula el pensamiento tridimensional. Esta variante tridimensional del Tic-Tac-Toe puede proporcionar una experiencia más cautivadora y desafiante para aquellos que buscan un nivel adicional de complejidad en el juego. \\
+
+A continuación se definen formalmente los conjuntos para la solución del problema que plantea el tic tac toe tridimensional:\\
+
+\begin{itemize}
+
+    \item $n\leftarrow$ tamaño de cada dimensión del tablero en el juego Tic-Tac-Toe 3D. Representa el número de casillas en cada dimensión del tablero.\\
+
+    \item $T\leftarrow$ conjunto de casillas que conforman el tablero.  El tamaño del tablero resulta en un total de n x n x n casillas en el tablero completo.\\
+
+\end{itemize}
+
+\section{Diseño}
+
+A continuación se presentan las condiciones de entrada para el correcto funcionamiento de la solución y su respectiva salida: \\
+
+\begin{defn*}
+
+Entradas: \\
+
+\begin{enumerate}
+
+    \item $T\leftarrow$ Conjunto de casillas del tablero que conforman su estado.\\
+    
+
+\end{enumerate}
+
+\end{defn*}
+~~~~
+
+\begin{defn*}
+Salidas:\\
+
+\begin{enumerate}
+
+    \item $X\leftarrow$ coordenada en el eje x para hacer click en el tablero.\\
+    
+    \item $Y\leftarrow$ coordenada en el eje y para hacer click en el tablero.\\
+
+    \item $Z\leftarrow$ coordenada en el eje z para hacer click en el tablero.\\
+
+\end{enumerate}
+
+\end{defn*}
+
+\part{Algoritmos}
+
+Este algoritmo es una implementación de jugador que elige coordenadas en $x$, $y$ y $z$ de manera totalmente aleatoria. No obstante, este revisa el estado del tablero antes de dar click para no jugar en una coordenada que ya se encuentra ocupada.\\
+
+ Inicialmente se configuró para que generara 3 números aleatorios, pero esta idea fue descartada debido a que al ser pocas opciones por numero, el tiempo que demoraba eligiendo jugada el algoritmo aleatorio crecía. Por esta razón, se decidió dotarlo con un estado del tablero para que pudiera tomar la decisión de manera mas rápida, generando un solo numero aleatorio que se compara con una posición en el arreglo de casillas. A continuación se muestra la implementación del algoritmo:\\
+
+\begin{algorithm}
+\caption{RandomTiktaktoePlayer::play}
+\begin{algorithmic}[1]
+\Procedure{play}{$x, y, z, \text{boxes}$}
+    \State $\text{randomNumber} \gets \text{random number between 0 and } \text{size}^3$
+    \State \textbf{do}
+    \State \hspace{\algorithmicindent} $\text{randomNumber} \gets \text{random number between 0 and } \text{size}^3$
+    \State \textbf{while} $\text{boxes[randomNumber]} = 'X' \text{ or } \text{boxes[randomNumber]} = 'O'$
+    \State $\text{convert randomNumber to } (x, y, z) \text{ using \_idx function}$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Función \_idx}
+\begin{algorithmic}[1]
+    \Function{\_idx}{$x, y, z, \text{number}$}
+        \State $n \gets \text{size}$
+        \State $z \gets \text{number} \div (n^2)$
+        \State $\text{number} \gets \text{number} \mod (n^2)$
+        \State $y \gets \text{number} \div n$
+        \State $\text{number} \gets \text{number} \mod n$
+        \State $x \gets \text{number}$
+    \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\end{document}

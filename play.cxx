@@ -58,10 +58,10 @@ int main(int argc, char** argv){
     while((!tiktaktoeBoard->have_tie()) && !tiktaktoeBoard->have_won()){
         std::cout << *tiktaktoeBoard << std::endl;
         tiktaktoeBoard->step(*playerX);
-        /*if(!tiktaktoeBoard->have_won()){
+        if(!tiktaktoeBoard->have_won()){
             std::cout << *tiktaktoeBoard << std::endl;
             tiktaktoeBoard->step(*playerO);
-        }*/
+        }
     }
 
     std::cout << *tiktaktoeBoard << std::endl;
